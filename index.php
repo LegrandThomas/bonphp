@@ -6,7 +6,8 @@ if (!key_exists("Prenom", $_SESSION) ||
     !key_exists("Taille", $_SESSION)||
     !key_exists("civilité", $_SESSION)) {
     $has_session = session_status() == PHP_SESSION_ACTIVE;
-    
+    print_r ($has_session);
+    print_r ($_COOKIE);
 }
 ?>
 
@@ -23,11 +24,11 @@ if (!key_exists("Prenom", $_SESSION) ||
     <div class="container">
         <div class="row">
             <div class="col-md-3 mt-3">
-            
             <a role="button" class="btn btn-outline-secondary w-100" href="index.php" name="home">Home</a> 
-           <?php  if ($has_session = 1) include_once './includes/ul.inc.php'; 
+           <?php  if ($has_session > 2) include_once './includes/ul.inc.php'; 
            ?>
           
+             
              </div>
 
             <section class="col-md-9 mt-3">
@@ -42,19 +43,22 @@ if (!key_exists("Prenom", $_SESSION) ||
                    
                                       if(isset($_POST['enreg'])){
                 
-                                              $table = array(
-                                              $first_name = $_POST['Prenom'],
-                                              $last_name = $_POST['Nom'],
-                                              $age= $_POST['Age'],
-                                              $size = $_POST['Taille'],
-                                              $civility= $_POST['civilité'],
+                                          
+                                              $first_name = $_POST['Prenom'];
+                                              $last_name = $_POST['Nom'];
+                                              $age= $_POST['Age'];
+                                              $size = $_POST['Taille'];
+                                              $civility= $_POST['civilité'];
+                                              $table = array( $first_name, $last_name, $age, $size, $civility,$table
                                                             );             
            
                                               $_SESSION['table'] = $table; 
-                                            // print_r ($_SESSION['table']);  
-              
+                                            print_r ($_SESSION); 
+                                            $a= $has_session+1;
+                                             print_r ($a); 
                                              echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>' ;
-                                            
+                                               if ($has_session = 2){ include_once './includes/ul.inc.php';} 
+           
                                             }  else{
                                                
                                             echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>';
