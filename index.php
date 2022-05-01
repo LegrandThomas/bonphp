@@ -35,7 +35,18 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
 <section class="col-md-9 mt-3">
 
   <?php
-                  
+         
+         $a="<p> ";
+         $b=" "  ;
+         $c= " <br>J'ai ";
+         $d=" ans et je mesure " ; 
+         $e="m.</p><br><br>"; 
+         $f='<div>à la ligne n°';
+         $g=' correspond la clé "';
+         $h='" et contient "';
+         $i=0;
+         $j='"</div>';
+
     if(isset($_GET['add'])) {include './includes/form.inc.html'; }
 
         elseif (isset($_POST['enreg'])){
@@ -73,11 +84,7 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
                                                         echo "<h3 class='fs-5'>===> Construction d'une phrase avec le contenu du tableau :</h3>";
                                 
                                                         $x = ($table['civility'] == "Man") ? "Mr  " :  "Mme "; 
-                                                        $a="<p> ";
-                                                        $b=" "  ;
-                                                        $c= " <br>J'ai ";
-                                                        $d=" ans et je mesure " ; 
-                                                        $e="m.</p><br><br>"; 
+                                                   
                                                         echo $a. $x . $table["first_name"] . $b. $table["last_name"] . $c . $table["age"] . $d . $table['size'] .$e;
                                
                                                         echo "<h3 class='fs-5'>===> Construction d'une phrase après MAJ du tableau :</h3>";
@@ -98,14 +105,10 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
                                                        //echo (" passé en loop");
                                                         echo "<h2 class='text-center'>Boucle</h2><br>";
                                                         echo "<p>===> Lecture du tableau à l'aide d'une boucle foreach</p><br>";
-                                                        $compteur=0;
-                                                        $a='<div>à la ligne n°';
-                                                        $b=' correspond la clé "';
-                                                        $c='" et contient "';
-                                                        $d='"</div>';
+                                                      
                                                        foreach($table as $clef => $valeur){
-                                                        echo $a . $compteur . $b . $clef . $c . $valeur . $d;
-                                                        $compteur++;
+                                                        echo $f . $i . $g . $clef . $h . $valeur . $j;
+                                                        $i++;
                                                                                           }
                                                     break;
 
@@ -115,15 +118,15 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
                                                         echo "<p>===> J'utilise ma fonction readTable()</p><br>";
                                                       
                                                         function readTable(){
-                                                            $a='<div>à la ligne n°';
-                                                            $b=' correspond la clé "';
-                                                            $c='" et contient "';
-                                                            $d='"</div>';
-                                                            $compteur = 0;
+                                                            $k='<div>à la ligne n°';
+                                                            $l=' correspond la clé "';
+                                                            $m='" et contient "';
+                                                            $n='"</div>';
+                                                            $i = 0;
                                                             $table = $_SESSION['table'];
                                                             foreach($table as $clef => $valeur){
-                                                                echo $a . $compteur . $b . $clef . $c . $valeur . $d;
-                                                                $compteur++;
+                                                                echo $k . $i . $l . $clef . $m . $valeur . $n;
+                                                                $i++;
                                                                                                }
                                                                              }
                                                             readTable();
