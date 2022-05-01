@@ -1,41 +1,23 @@
 
 
-<div class="container">
-    <div class="d-flex p-2 bd-highlight w-25 p-3" >
-
-    <nav>
-                 <ul>   
-               
-
-                <ul class="list-group">
-                <a role=button  class="list-group-item list-group-item-action" href="index.php" name="debugging">Debogage</a>
-                   <button type="button" class="list-group-item list-group-item-action">Concaténation</button>
-                   <button type="button" class="list-group-item list-group-item-action">Boucle</button>
-                   <button type="button" class="list-group-item list-group-item-action">Fonction</button>
-                   <button type="button" class="list-group-item list-group-item-action">Concaténation</button>
-                   <button type="button" class="list-group-item list-group-item-action">Supprimer</button>
-                  
-                </ul>
-                </li>
-                 
-                </ul>
-</nav> 
-  
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <ul class="nav flex-column my-0">
+    <li class="nav-item">
+        <a class="btn btn-outline-primary w-100" href="index.php?debugging">Débogage</a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="btn btn-outline-primary w-100" href="index.php?concatenation">Concaténation</a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="btn btn-outline-primary w-100" href="index.php?loop">Boucle</a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="btn btn-outline-primary w-100" href="index.php?function">Fonction</a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="btn btn-outline-primary w-100" href="index.php?del">Supprimer</a>
+    </li>
+</ul>
