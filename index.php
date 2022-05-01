@@ -29,7 +29,6 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
                 <a role="button" class="btn btn-outline-secondary w-100" href="index.php">Home</a> 
                 <?php 
                 if (isset($table)) include_once './includes/ul.inc.php';
-                //include_once './includes/ul.inc.php';
                  ?>  
                
         </nav>
@@ -52,7 +51,7 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
                                                             );             
            
                                             $_SESSION['table'] = $table; 
-                                            //print_r($table);
+                                    
                                         
                                              echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>' ;
                                            
