@@ -73,16 +73,17 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
                                                         echo "<h3 class='fs-5'>===> Construction d'une phrase avec le contenu du tableau :</h3>";
                                 
                                                         $x = ($table['civility'] == "Man") ? "Mr  " :  "Mme "; 
-                                                        $a=" "  ;
-                                                        $b= " <br>J'ai ";
-                                                        $c=" ans et je mesure " ; 
-                                                        $d="m.</p><br><br>"; 
-                                                        echo "<p> ". $x . $table["first_name"] . $a. $table["last_name"] . $b . $table["age"] . $c . $table['size'] .$d;
+                                                        $a="<p> ";
+                                                        $b=" "  ;
+                                                        $c= " <br>J'ai ";
+                                                        $d=" ans et je mesure " ; 
+                                                        $e="m.</p><br><br>"; 
+                                                        echo $a. $x . $table["first_name"] . $b. $table["last_name"] . $c . $table["age"] . $d . $table['size'] .$e;
                                
                                                         echo "<h3 class='fs-5'>===> Construction d'une phrase après MAJ du tableau :</h3>";
                                                         $table['first_name'] = ucfirst ($table['first_name']);
                                                         $table['last_name'] = strtoupper($table['last_name']);
-                                                        echo "<p> ". $x . $table["first_name"] . $a . $table["last_name"] . $b. $table["age"] . $c . $table['size'] . $d;
+                                                        echo $a. $x . $table["first_name"] . $b . $table["last_name"] . $c. $table["age"] . $d . $table['size'] . $e;
                                 
                                                         echo "<h3 class='fs-5'>===> Affichage d'une virgule à la place du point pour la taille :</h3>";
 
@@ -90,7 +91,7 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
                                                         $table['first_name'] = ucfirst ($table['first_name']);
                                                         $table['last_name'] = strtoupper($table['last_name']);
                                                               
-                                                        echo "<p> ". $x . $table["first_name"] . $a . $table["last_name"] . $b . $table["age"] . $c. $table['size'] . $d;
+                                                        echo $a. $x . $table["first_name"] . $b . $table["last_name"] . $c . $table["age"] . $d. $table['size'] . $e;
                                                     break;
 
                                                     case isset($_GET['loop']):
