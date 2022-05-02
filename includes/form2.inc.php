@@ -32,11 +32,11 @@ echo '</div></form>'
     <label for="HTML">HTML</label>  
     </div>
     <div>
-    <input type="checkbox" name="CSS" value="HTML5" id="CSS">
+    <input type="checkbox" name="CSS" value="CSS" id="CSS">
     <label for="CSS">CSS</label>  
     </div>
     <div>
-    <input type="checkbox" name="JavaScript" value="HTML5" id="JavaScript">
+    <input type="checkbox" name="JavaScript" value="JavaScript" id="JavaScript">
     <label for="JavaScript">JavaScript</label>  
     </div>
     <div>
@@ -68,7 +68,6 @@ echo '</div></form>'
 
 
 </div>
-
 
 <div class="card col-11 mx-auto my-1">Joindre une image (jpg ou png</div>
 <input type="file" name="file">

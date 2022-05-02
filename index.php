@@ -49,7 +49,7 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
 
 if(isset($_GET['add'])) {
     echo'<p class="h1 text-center">Ajouter des données</p>';
-    echo '<form action="index.php" method="POST">';
+    echo '<form action="index.php" method="POST" enctype="multipart/form-data">';
     include './includes/form.inc.html'; 
     echo '<button type="submit" class="btn btn-primary" name="enreg">Enregistrer des données</button>
 
@@ -65,7 +65,7 @@ if(isset($_GET['add'])) {
 
 elseif (isset($_GET['addmore'])) {
     echo'<p class="h1 text-center">Ajouter  plus de données</p>';
-    echo '<form action="index.php" method="POST">';
+    echo '<form action="index.php" method="POST" enctype="multipart/form-data">';
     include './includes/form2.inc.php'; 
 echo '</div>
 </form>';
@@ -86,7 +86,7 @@ echo '</div>
             $_SESSION['table'] = $table; 
                            
             echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>' ;
-                                           
+                                        
                                     }  elseif (isset($_POST['enreg2'])){$table = array( 
                                         "first_name" => htmlspecialchars($_POST['Prenom']),
                                         "last_name" => htmlspecialchars($_POST['Nom']),
