@@ -50,7 +50,7 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
 if(isset($_GET['add'])) {include './includes/form.inc.html'; }
     elseif (isset($_POST['enreg'])){
                                           
-             $table = array( 
+            $table = array( 
             "first_name" => $_POST['Prenom'],
             "last_name" => $_POST['Nom'],
             "age"=> $_POST['Age'],
@@ -62,93 +62,89 @@ if(isset($_GET['add'])) {include './includes/form.inc.html'; }
                            
             echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>' ;
                                            
-                                        } elseif(isset($table)){
+                                    } elseif(isset($table)){
                                                         
-                                                    switch(isset($_GET)){
-                                                    case isset($_GET['debugging']):
-                                                       //echo ' passé en debugging';
-                                                       echo '<h2 class="text-center">Débogage</h2>';
-                                                       echo "<p>===> Lecture du tableau à l'aide de la fonction print_r()</p>";
-                                                       echo '<pre>';
-                                                       print_r($table);
-                                                       echo '</pre>';
-                                                    break;
+                                        switch(isset($_GET)){
+                                            case isset($_GET['debugging']):
+                                                //echo ' passé en debugging';
+                                                echo '<h2 class="text-center">Débogage</h2>';
+                                                echo "<p>===> Lecture du tableau à l'aide de la fonction print_r()</p>";
+                                                echo '<pre>';
+                                                print_r($table);
+                                                echo '</pre>';
+                                            break;
 
-                                                    case isset($_GET['concatenation']):
-                                                        //echo ' passé en concatenation';
+                                            case isset($_GET['concatenation']):
+                                                //echo ' passé en concatenation';
                                                         
-                                                        echo '<h2 class="text-center">Concaténation</h2>';
-                                                        echo'<br>';
-                                                        echo "<h3 class='fs-5'>===> Construction d'une phrase avec le contenu du tableau :</h3>";
+                                                 echo '<h2 class="text-center">Concaténation</h2>';
+                                                 echo'<br>';
+                                                 echo "<h3 class='fs-5'>===> Construction d'une phrase avec le contenu du tableau :</h3>";
                                 
-                                                        $x = ($table['civility'] == "Man") ? "Mr  " :  "Mme "; 
+                                                 $x = ($table['civility'] == "Man") ? "Mr  " :  "Mme "; 
                                                    
-                                                        echo $a. $x . $table["first_name"] . $b. $table["last_name"] . $c . $table["age"] . $d . $table['size'] .$e;
+                                                 echo $a. $x . $table["first_name"] . $b. $table["last_name"] . $c . $table["age"] . $d . $table['size'] .$e;
                                
-                                                        echo "<h3 class='fs-5'>===> Construction d'une phrase après MAJ du tableau :</h3>";
-                                                        $table['first_name'] = ucfirst ($table['first_name']);
-                                                        $table['last_name'] = strtoupper($table['last_name']);
-                                                        echo $a. $x . $table["first_name"] . $b . $table["last_name"] . $c. $table["age"] . $d . $table['size'] . $e;
+                                                 echo "<h3 class='fs-5'>===> Construction d'une phrase après MAJ du tableau :</h3>";
+                                                 $table['first_name'] = ucfirst ($table['first_name']);
+                                                 $table['last_name'] = strtoupper($table['last_name']);
+                                                 echo $a. $x . $table["first_name"] . $b . $table["last_name"] . $c. $table["age"] . $d . $table['size'] . $e;
                                 
-                                                        echo "<h3 class='fs-5'>===> Affichage d'une virgule à la place du point pour la taille :</h3>";
+                                                 echo "<h3 class='fs-5'>===> Affichage d'une virgule à la place du point pour la taille :</h3>";
 
-                                                        $table['size'] = str_replace('.' , ',', $table['size']);
-                                                        $table['first_name'] = ucfirst ($table['first_name']);
-                                                        $table['last_name'] = strtoupper($table['last_name']);
+                                                 $table['size'] = str_replace('.' , ',', $table['size']);
+                                                 $table['first_name'] = ucfirst ($table['first_name']);
+                                                 $table['last_name'] = strtoupper($table['last_name']);
                                                               
-                                                        echo $a. $x . $table["first_name"] . $b . $table["last_name"] . $c . $table["age"] . $d. $table['size'] . $e;
-                                                    break;
+                                                 echo $a. $x . $table["first_name"] . $b . $table["last_name"] . $c . $table["age"] . $d. $table['size'] . $e;
+                                            break;
 
-                                                    case isset($_GET['loop']):
-                                                       //echo (" passé en loop");
-                                                        echo "<h2 class='text-center'>Boucle</h2><br>";
-                                                        echo "<p>===> Lecture du tableau à l'aide d'une boucle foreach</p><br>";
+                                            case isset($_GET['loop']):
+                                                //echo (" passé en loop");
+                                                echo "<h2 class='text-center'>Boucle</h2><br>";
+                                                echo "<p>===> Lecture du tableau à l'aide d'une boucle foreach</p><br>";
                                                       
-                                                       foreach($table as $clef => $valeur){
-                                                        echo $f . $i . $g . $clef . $h . $valeur . $j;
-                                                        $i++;
-                                                                                          }
-                                                    break;
+                                                foreach($table as $clef => $valeur){
+                                                echo $f . $i . $g . $clef . $h . $valeur . $j;
+                                                $i++;
+                                                                                    }
+                                            break;
 
-                                                    case isset($_GET['function']):
-                                                        //echo (" passé en function");
-                                                        echo "<h2 class='text-center'>Fonction</h2><br>";
-                                                        echo "<p>===> J'utilise ma fonction readTable()</p><br>";
+                                            case isset($_GET['function']):
+                                                //echo (" passé en function");
+                                                echo "<h2 class='text-center'>Fonction</h2><br>";
+                                                echo "<p>===> J'utilise ma fonction readTable()</p><br>";
                                                       
-                                                        function readTable(){
-                                                            $k='<div>à la ligne n°';
-                                                            $l=' correspond la clé "';
-                                                            $m='" et contient "';
-                                                            $n='"</div>';
-                                                            $i = 0;
-                                                            $table = $_SESSION['table'];
-                                                            foreach($table as $clef => $valeur){
-                                                                echo $k . $i . $l . $clef . $m . $valeur . $n;
-                                                                $i++;
-                                                                                               }
-                                                                             }
+                                                function readTable(){
+                                                $k='<div>à la ligne n°';
+                                                $l=' correspond la clé "';
+                                                $m='" et contient "';
+                                                $n='"</div>';
+                                                $i = 0;
+                                                $table = $_SESSION['table'];
+                                                foreach($table as $clef => $valeur){
+                                                echo $k . $i . $l . $clef . $m . $valeur . $n;
+                                                $i++;
+                                                                    }
+                                                            }
                                                             readTable();
-                                                    break;
+                                            break;
 
-                                                    case isset($_GET['del']):
-                                                        //echo (" passé en del");
-                                                        session_destroy(); 
-                                                        unset ($_SESSION['table']);
-                                                        echo '<p class="alert-success text-center py-3"> Données supprimées !</p>';
-                                                    break;
-                                                    default: echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>';
-                                                                  
-                                                         
+                                            case isset($_GET['del']):
+                                                //echo (" passé en del");
+                                                session_destroy(); 
+                                                unset ($_SESSION['table']);
+                                                echo '<p class="alert-success text-center py-3"> Données supprimées !</p>';
+                                            break;
+                                            
+                                            default: echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>';
+                                                     
                                                                         }
                                                                        
                                                                     }else{
                                                                         echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>';
                                                                      } 
-                                                                        
-                                                
-                                               
-                                                   
-                                                  
+                                
   ?>
                   
 
