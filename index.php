@@ -49,7 +49,7 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
 
 if(isset($_GET['add'])) {
     echo'<p class="h1 text-center">Ajouter des données</p>';
-    echo '<form action="index.php" method="POST" enctype="multipart/form-data">';
+    echo '<form action="index.php" method="POST" >';
     include './includes/form.inc.html'; 
     echo '<button type="submit" class="btn btn-primary" name="enreg">Enregistrer des données</button>
 
@@ -111,10 +111,10 @@ echo '</div>
                                                          "error" => htmlspecialchars($_POST['errorIMG']),
                                                          "size"=> htmlspecialchars($_POST['sizeIMG']),
                                                     
-                                    
-                                        )
+                                                         )
                                     );             
-                                       
+                                        //move_uploaded_file($image['tmp_name'],"photos/".$image['name']);
+                                    
                                         $_SESSION['table'] = $table;    
                                         echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>' ;                                                   
                                 } 
@@ -124,6 +124,7 @@ echo '</div>
                                         switch(isset($_GET)){
                                             case isset($_GET['debugging']):
                                                 //echo ' passé en debugging';
+                                                //$table = array_filter($table); 
                                                 echo '<h2 class="text-center">Débogage</h2>';
                                                 echo "<p>===> Lecture du tableau à l'aide de la fonction print_r()</p>";
                                                 echo '<pre>';
@@ -160,7 +161,8 @@ echo '</div>
                                                 //echo (" passé en loop");
                                                 echo "<h2 class='text-center'>Boucle</h2><br>";
                                                 echo "<p>===> Lecture du tableau à l'aide d'une boucle foreach</p><br>";
-                                                      
+                                                $table = array_filter($table);                 
+                                                   
                                                 foreach($table as $clef => $valeur){
                                                 echo $f . $i . $g . $clef . $h . $valeur . $j;
                                                 $i++;
@@ -171,7 +173,7 @@ echo '</div>
                                                 //echo (" passé en function");
                                                 echo "<h2 class='text-center'>Fonction</h2><br>";
                                                 echo "<p>===> J'utilise ma fonction readTable()</p><br>";
-                                                      
+                                                 
                                                 function readTable(){
                                                 $k='<div>à la ligne n°';
                                                 $l=' correspond la clé "';
@@ -179,6 +181,7 @@ echo '</div>
                                                 $n='"</div>';
                                                 $i = 0;
                                                 $table = $_SESSION['table'];
+                                                $table = array_filter($table);  
                                                 foreach($table as $clef => $valeur){
                                                 echo $k . $i . $l . $clef . $m . $valeur . $n;
                                                 $i++;
@@ -194,13 +197,13 @@ echo '</div>
                                                 echo '<p class="alert-success text-center py-3"> Données supprimées !</p>';
                                             break;
 
-                                            default: echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>';
+                                            default: echo '<a role="button" class=" btn btn-primary me-3" href="index.php?add">Ajouter des données</a>';
                                             echo '<a role="button" class="btn btn-outline-secondary w-30" href="index.php?addmore">Ajouter plus de données</a>';
                                                                                  
                                                                         }
                                                                        
                                                                     }else{
-                                                                        echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>';
+                                                                        echo '<a role="button" class=" btn btn-primary me-3" href="index.php?add">Ajouter des données</a>';
                                                                         echo '<a role="button" class="btn btn-outline-secondary w-30" href="index.php?addmore">Ajouter plus de données</a>';
                                                                           } 
 
