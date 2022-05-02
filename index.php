@@ -47,15 +47,67 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
          $i=0;
          $j='"</div>';
 
-if(isset($_GET['add'])) {include './includes/form.inc.html'; }
+if(isset($_GET['add'])) {include './includes/form.inc.html'; 
+    echo '<button type="submit" class="btn btn-primary" name="enreg">Enregistrer des données</button>
+
+   
+    </div>
+
+    
+</form>';
+
+
+
+}
+
+elseif (isset($_GET['addmore'])) {include './includes/form2.inc.php'; 
+echo '</div>';
+
+$table = array( 
+    "first_name" => htmlspecialchars($_POST['Prenom']),
+    "last_name" => htmlspecialchars($_POST['Nom']),
+    "age"=> htmlspecialchars($_POST['Age']),
+    "size" => htmlspecialchars($_POST['Taille']),
+    "civility"=> htmlspecialchars($_POST['inlineRadioOptions']),
+                    
+    "html" => htmlspecialchars($_POST['HTML']),
+    "css"=> htmlspecialchars($_POST['CSS']),
+    "javascript" => htmlspecialchars($_POST['JS']),
+    "php"=> htmlspecialchars($_POST['PHP']),
+    "mysql" => htmlspecialchars($_POST['MySQL']),
+    "bootstrap"=> htmlspecialchars($_POST['Bootstrap']),
+    "symfony" => htmlspecialchars($_POST['Symfony']),
+    "react"=> htmlspecialchars($_POST['React']),
+    "color"=> htmlspecialchars($_POST['color']), 
+    "dob"=> htmlspecialchars($_POST['dateN']), 
+    "img"=> array(
+                     "name" => htmlspecialchars($_POST['nameIMG']),
+                     "type" => htmlspecialchars($_POST['typeIMG']),
+                     "tmp_name"=> htmlspecialchars($_POST['tmpIMG']),
+                     "error" => htmlspecialchars($_POST['errorIMG']),
+                     "size"=> htmlspecialchars($_POST['sizeIMG']),
+                     if (isset($_POST['enreg'])){
+                        echo'lol';
+                        ;}
+
+
+    )
+);             
+   
+    $_SESSION['table'] = $table; 
+                   
+    
+}
+
+                                                                  
     elseif (isset($_POST['enreg'])){
                                           
             $table = array( 
-            "first_name" => $_POST['Prenom'],
-            "last_name" => $_POST['Nom'],
-            "age"=> $_POST['Age'],
-            "size" => $_POST['Taille'],
-            "civility"=> $_POST['inlineRadioOptions']
+            "first_name" => htmlspecialchars($_POST['Prenom']),
+            "last_name" => htmlspecialchars($_POST['Nom']),
+            "age"=> htmlspecialchars($_POST['Age']),
+            "size" => htmlspecialchars($_POST['Taille']),
+            "civility"=> htmlspecialchars($_POST['inlineRadioOptions'])
                             );             
            
             $_SESSION['table'] = $table; 
@@ -136,15 +188,18 @@ if(isset($_GET['add'])) {include './includes/form.inc.html'; }
                                                 unset ($_SESSION['table']);
                                                 echo '<p class="alert-success text-center py-3"> Données supprimées !</p>';
                                             break;
-                                            
+
                                             default: echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>';
-                                                     
+                                            echo '<a role="button" class="btn btn-outline-secondary w-30" href="index.php?addmore">Ajouter plus de données</a>';
+                                                                                 
                                                                         }
                                                                        
                                                                     }else{
                                                                         echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>';
-                                                                     } 
-                                
+                                                                        echo '<a role="button" class="btn btn-outline-secondary w-30" href="index.php?addmore">Ajouter plus de données</a>';
+                                                                          } 
+                                                                   
+                                                                       
   ?>
                   
 
