@@ -47,10 +47,7 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
          $i=0;
          $j='"</div>';
 
-    if(isset($_GET['add'])) {include './includes/form.inc.html'; }
-   
-      
-
+if(isset($_GET['add'])) {include './includes/form.inc.html'; }
     elseif (isset($_POST['enreg'])){
                                           
              $table = array( 
@@ -133,13 +130,14 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
                                                             readTable();
                                                     break;
 
-
                                                     case isset($_GET['del']):
                                                         //echo (" passé en del");
                                                         session_destroy(); 
                                                         unset ($_SESSION['table']);
                                                         echo '<p class="alert-success text-center py-3"> Données supprimées !</p>';
                                                     break;
+                                                    default: echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>';
+                                                                  
                                                          
                                                                         }
                                                                        
