@@ -48,8 +48,10 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
          $j='"</div>';
 
     if(isset($_GET['add'])) {include './includes/form.inc.html'; }
+   
+      
 
-        elseif (isset($_POST['enreg'])){
+    elseif (isset($_POST['enreg'])){
                                           
              $table = array( 
             "first_name" => $_POST['Prenom'],
@@ -63,9 +65,8 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
                            
             echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>' ;
                                            
-                                        } else{
-                                                if (isset($table)){
-                                                       
+                                        } elseif(isset($table)){
+                                                        
                                                     switch(isset($_GET)){
                                                     case isset($_GET['debugging']):
                                                        //echo ' passé en debugging';
@@ -139,15 +140,17 @@ if (isset($_SESSION['table'])) $table=$_SESSION['table'];
                                                         unset ($_SESSION['table']);
                                                         echo '<p class="alert-success text-center py-3"> Données supprimées !</p>';
                                                     break;
-        
-                                               
+                                                         
                                                                         }
-                                                                    }
-                                                   echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>';
-                                        
-                                               } 
+                                                                       
+                                                                    }else{
+                                                                        echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>';
+                                                                     } 
+                                                                        
+                                                
+                                               
                                                    
-                               
+                                                  
   ?>
                   
 
