@@ -71,11 +71,11 @@ echo '</div></form>'
 
 
 <div class="card col-11 mx-auto my-1">Joindre une image (jpg ou png</div>
+<input type="file" name="file">
 <div class="d-flex flex-row-reverse bd-highlight">
-    <button type="submit" class="btn btn-primary" name="enreg">Enregistrer des données</button>
+<button type="submit" class="btn btn-primary" name="enreg2">Enregistrer des données</button>
 
-   
-    </div>
+</div>
 </form>
 
 </div>
