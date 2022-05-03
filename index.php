@@ -65,7 +65,7 @@ if(isset($_GET['add'])) {
 
 elseif (isset($_GET['addmore'])) {
     echo'<p class="h1 text-center">Ajouter  plus de données</p>';
-    echo '<form action="index.php" method="POST" enctype="multipart/form-data">';
+    echo '<form action="index.php" method="POST"  enctype="multipart/form-data">';
     include './includes/form2.inc.php'; 
 echo '</div>
 </form>';
@@ -94,26 +94,33 @@ echo '</div>
                                         "size" => htmlspecialchars($_POST['Taille']),
                                         "civility"=> htmlspecialchars($_POST['inlineRadioOptions']),
                                                         
-                                        "html" => htmlspecialchars($_POST['HTML']),
-                                        "css"=> htmlspecialchars($_POST['CSS']),
-                                        "javascript" => htmlspecialchars($_POST['JS']),
-                                        "php"=> htmlspecialchars($_POST['PHP']),
-                                        "mysql" => htmlspecialchars($_POST['MySQL']),
-                                        "bootstrap"=> htmlspecialchars($_POST['Bootstrap']),
-                                        "symfony" => htmlspecialchars($_POST['Symfony']),
-                                        "react"=> htmlspecialchars($_POST['React']),
-                                        "color"=> htmlspecialchars($_POST['color']), 
-                                        "dob"=> htmlspecialchars($_POST['dateN']), 
-                                        "img"=> array(
-                                                         "name" => htmlspecialchars($_POST['nameIMG']),
-                                                         "type" => htmlspecialchars($_POST['typeIMG']),
-                                                         "tmp_name"=> htmlspecialchars($_POST['tmpIMG']),
-                                                         "error" => htmlspecialchars($_POST['errorIMG']),
-                                                         "size"=> htmlspecialchars($_POST['sizeIMG']),
-                                                    
-                                                         )
-                                    );             
-                                        //move_uploaded_file($image['tmp_name'],"photos/".$image['name']);
+                                        "html" =>($_POST['HTML']),
+                                        "css"=> ($_POST['CSS']),
+                                        "javascript" => ($_POST['JS']),
+                                        "php"=> ($_POST['PHP']),
+                                        "mysql" => ($_POST['MySQL']),
+                                        "bootstrap"=> ($_POST['Bootstrap']),
+                                        "symfony" => ($_POST['Symfony']),
+                                        "react"=> ($_POST['React']),
+                                        "color"=> ($_POST['color']), 
+                                        "dob"=> ($_POST['dateN']), 
+                                        
+                                            "img" => $_FILES['file']
+                                            
+                                            //array(
+                                            //"name" => $_FILES['file']['name'],
+                                            //"type" => $_FILES['file']['type'],
+                                            //"tmp_name" => $_FILES['file']['tmp_name'],
+                                            //"error" => $_FILES['file']['error'],
+                                            //"size" => $_FILES['file']['size']
+                                        
+
+                                    );   
+                                    if (move_uploaded_file($_FILES['file']['tmp_name'],"./uploaded/".$_FILES['file']['name'])) {
+                                        print "Téléchargé avec succès!";
+                                    } else {
+                                        print "Échec du téléchargement!";
+                                    }
                                     
                                         $_SESSION['table'] = $table;    
                                         echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>' ;                                                   
@@ -124,7 +131,7 @@ echo '</div>
                                         switch(isset($_GET)){
                                             case isset($_GET['debugging']):
                                                 //echo ' passé en debugging';
-                                                //$table = array_filter($table); 
+                                                $table = array_filter($table); 
                                                 echo '<h2 class="text-center">Débogage</h2>';
                                                 echo "<p>===> Lecture du tableau à l'aide de la fonction print_r()</p>";
                                                 echo '<pre>';
