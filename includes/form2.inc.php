@@ -70,7 +70,7 @@ echo '</div></form>'
 </div>
 
 <div class="card col-11 mx-auto my-1">Joindre une image (jpg ou png)
-<input type="hidden" name="MAX_FILE_SIZE" value="20000" />
+<input type="hidden" name="MIN_FILE_SIZE" value="2 097 152 " />
 <input class="btn btn-outline-secondary" id="inputGroupFileAddon04"  name="file" type="file">
 <div class="d-flex flex-row-reverse bd-highlight">
 <button type="submit" class="btn btn-primary" name="enreg2">Enregistrer des données</button>
