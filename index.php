@@ -87,7 +87,12 @@ echo '</div>
                            
             echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>' ;
                                         
-                                    }  elseif (isset($_POST['enreg2'])){$table = array( 
+                                    }  elseif (isset($_POST['enreg2']))
+                                            
+                                    
+                                    
+                                    
+                                        {$table = array( 
                                         "first_name" => htmlspecialchars($_POST['Prenom']),
                                         "last_name" => htmlspecialchars($_POST['Nom']),
                                         "age"=> htmlspecialchars($_POST['Age']),
@@ -104,9 +109,8 @@ echo '</div>
                                         "react"=> ($_POST['React']),
                                         "color"=> ($_POST['color']), 
                                         "dob"=> ($_POST['dateN']), 
-                                        
-                                            "img" => $_FILES['file']
-                                            
+                                        "img" => $_FILES['file']
+                                       
                                             //array(
                                             //"name" => $_FILES['file']['name'],
                                             //"type" => $_FILES['file']['type'],
@@ -115,13 +119,24 @@ echo '</div>
                                             //"size" => $_FILES['file']['size']
                                         
 
-                                    );   
-                                    if (move_uploaded_file($_FILES['file']['tmp_name'],"./uploaded/".$_FILES['file']['name'])) {
-                                        print "Téléchargé avec succès!";
-                                    } else {
-                                        print "Échec du téléchargement!";
-                                    }
-                                    
+                                    );  
+                                    $file_ext=strtolower(end(explode('.',$_FILES['file']['name'])));
+                                 
+
+                                if ($_FILES['file']['size'] > 2097152 ){
+                                    print "taille de l'image doit être supérieur à 2 mo";
+                                }elseif($file_ext="pdf"){
+                                    print "Extension PDF non prise en charge"; 
+                                  }
+                                    elseif (move_uploaded_file($_FILES['file']['tmp_name'],"./uploaded/".$_FILES['file']['name'])) {
+                                     print "Téléchargé avec succès!";
+                                  
+                                 }
+                                 else {
+                                    print "Échec du téléchargement!";
+                                    print_r($_FILES['file']['error']);
+                                }
+                                   
                                         $_SESSION['table'] = $table;    
                                         echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>' ;                                                   
                                 } 
