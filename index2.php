@@ -18,8 +18,9 @@ $pwd = $_GET['pwd'];
 
 
 function check_password(){
-  
+
   $pwd="LAPIN1222212/a";
+        
     print_r($pwd);
     echo'<br>';
                 if( preg_match("#[a-z]+#", $pwd) ) {
@@ -57,6 +58,8 @@ function check_password(){
                                 }
 }
 check_password();
+
+//voir pour passer la varaible recu en get en parametre pour la fonction et l'appel
 ?>
 </body>
 </html>
