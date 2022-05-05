@@ -121,25 +121,52 @@ echo '</div>
 
                                     );  
                                     $file_ext=strtolower(end(explode('.',$_FILES['file']['name'])));
+                                  
                                  
 
                                 if ($_FILES['file']['size'] > 2097152 ){
                                     print "taille de l'image doit être supérieur à 2 mo";
-                                }elseif($file_ext="pdf"){
-                                    print "Extension PDF non prise en charge"; 
-                                  }
-                                    elseif (move_uploaded_file($_FILES['file']['tmp_name'],"./uploaded/".$_FILES['file']['name'])) {
-                                     print "Téléchargé avec succès!";
-                                  
-                                 }
-                                 else {
-                                    print "Échec du téléchargement!";
-                                    print_r($_FILES['file']['error']);
+                                    unset ($_SESSION['table']);
                                 }
-                                   
+                                elseif($file_ext=="pdf"){
+                                    print "Extension PDF non prise en charge"; 
+                                    unset ($_SESSION['table']);
+                                  }
+                                
+                                elseif($_FILES['file']['error']>"0") {
+                                    print "Échec du téléchargement!";
+                                    switch($_FILES['file']['error']){
+                                        case 1:
+                                            print "Échec du téléchargement!";
+                                            print ($_FILES['file']['error']);
+                                        break;
+
+                                        case 2:
+                                            print "Échec du téléchargement!";
+                                            print ($_FILES['file']['error']);
+
+                                        break;
+
+                                        case 3:
+                                            print "Échec du téléchargement!";
+                                            print ($_FILES['file']['error']);
+                                        break;
+
+                                        case 4:
+                                            print "Échec du téléchargement!";
+                                            print ($_FILES['file']['error']);
+                                        break;
+
+                                    }
+                                    print_r($_FILES['file']['error']);
+                                    unset ($_SESSION['table']);
+                                }else
+                                     {
+                                        move_uploaded_file($_FILES['file']['tmp_name'],"./uploaded/".$_FILES['file']['name']);
+                                        print "Téléchargé avec succès!";
                                         $_SESSION['table'] = $table;    
                                         echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>' ;                                                   
-                                } 
+                                 } }  
                                     
                                     elseif(isset($table)){
                                                         
@@ -181,14 +208,31 @@ echo '</div>
 
                                             case isset($_GET['loop']):
                                                 //echo (" passé en loop");
+                                                $k='<div>à la ligne n°';
+                                                $l=' correspond la clé "';
+                                                $m='" et contient ';
+                                                $n='"</div>';
+                                                $i = 0;
                                                 echo "<h2 class='text-center'>Boucle</h2><br>";
                                                 echo "<p>===> Lecture du tableau à l'aide d'une boucle foreach</p><br>";
                                                 $table = array_filter($table);                 
                                                    
-                                                foreach($table as $clef => $valeur){
-                                                echo $f . $i . $g . $clef . $h . $valeur . $j;
-                                                $i++;
-                                                                                    }
+                                                foreach ($table as $clef => $valeur){
+                                                    if($clef=='img'){
+                                                        echo $k . $i . $l . $clef . $m ;
+                                                        break;
+                                                       
+                                                    }
+                                                 
+                                                    echo $k . $i . $l . $clef . $m . $valeur . $n;
+                                                     $i=$i+1;
+                                                                                }
+                                                if ($table['img']['name']!=""){
+                                                    echo '<figure>';
+                                                    echo "<img w-100 src='uploaded/".$table['img']['name']."'>";
+                                                    echo '</figure>';
+                                                }     
+                                                
                                             break;
 
                                             case isset($_GET['function']):
@@ -199,17 +243,29 @@ echo '</div>
                                                 function readTable(){
                                                 $k='<div>à la ligne n°';
                                                 $l=' correspond la clé "';
-                                                $m='" et contient "';
+                                                $m='" et contient ';
                                                 $n='"</div>';
                                                 $i = 0;
                                                 $table = $_SESSION['table'];
                                                 $table = array_filter($table);  
-                                                foreach($table as $clef => $valeur){
-                                                echo $k . $i . $l . $clef . $m . $valeur . $n;
-                                                $i++;
-                                                                    }
-                                                            }
+
+                                                foreach ($table as $clef => $valeur){
+                                                    if($clef=='img'){
+                                                        echo $k . $i . $l . $clef . $m ;
+                                                        break;
+                                                       
+                                                    }
+                                                 
+                                                    echo $k . $i . $l . $clef . $m . $valeur . $n;
+                                                     $i=$i+1;
+                                                                                }
+                                                if ($table['img']['name']!=""){
+                                                    echo '<figure>';
+                                                    echo "<img w-100 src='uploaded/".$table['img']['name']."'>";
+                                                    echo '</figure>';
+                                                }     
                                                             readTable();
+                                            }
                                             break;
 
                                             case isset($_GET['del']):
