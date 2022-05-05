@@ -139,22 +139,44 @@ echo '</div>
                                         case 1:
                                             print "Échec du téléchargement!";
                                             print ($_FILES['file']['error']);
+                                            echo ' Valeur : 1. La taille du fichier téléchargé excède la valeur de upload_max_filesize, configurée dans le php.ini';
                                         break;
 
                                         case 2:
                                             print "Échec du téléchargement!";
                                             print ($_FILES['file']['error']);
-
+                                            echo ' Valeur : 2. La taille du fichier téléchargé excède la valeur de MAX_FILE_SIZE, qui a été spécifiée dans le formulaire HTML';
                                         break;
 
                                         case 3:
                                             print "Échec du téléchargement!";
                                             print ($_FILES['file']['error']);
+                                            echo 'Valeur : 3. Le fichier n\'a été que partiellement téléchargé';
+                                        
                                         break;
 
                                         case 4:
                                             print "Échec du téléchargement!";
                                             print ($_FILES['file']['error']);
+                                            echo ' Valeur : 4. Aucun fichier n\'a été téléchargé';
+                                        break;
+
+                                        case 6:
+                                            print "Échec du téléchargement!";
+                                            print ($_FILES['file']['error']);
+                                            echo ' Valeur : 6. Un dossier temporaire est manquant';
+                                        break;
+
+                                        case 7:
+                                            print "Échec du téléchargement!";
+                                            print ($_FILES['file']['error']);
+                                            echo 'Valeur : 7. Échec de l\'écriture du fichier sur le disque';
+                                        break;
+
+                                        case 8:
+                                            print "Échec du téléchargement!";
+                                            print ($_FILES['file']['error']);
+                                            echo ' Valeur : 8. Une extension PHP a arrêté l\'envoi de fichier. PHP ne propose aucun moyen de déterminer quelle extension est en cause. L\'examen du phpinfo() peut aider';
                                         break;
 
                                     }
@@ -263,9 +285,10 @@ echo '</div>
                                                     echo '<figure>';
                                                     echo "<img w-100 src='uploaded/".$table['img']['name']."'>";
                                                     echo '</figure>';
-                                                }     
-                                                            readTable();
+                                                }  
                                             }
+                                                            readTable();
+                                              
                                             break;
 
                                             case isset($_GET['del']):
