@@ -121,62 +121,62 @@ echo '</div>
 
                                     );  
                                     $file_ext=strtolower(end(explode('.',$_FILES['file']['name'])));
-                                  
-                                 
 
                                 if ($_FILES['file']['size'] > 2097152 ){
-                                    print "taille de l'image doit être supérieur à 2 mo";
+                                    echo '<p class="alert alert-danger  text-center py-3"> taille de l\'image doit être supérieur à 2 mo!</p>';
                                     unset ($_SESSION['table']);
                                 }
-                                elseif($file_ext=="pdf"){
-                                    print "Extension PDF non prise en charge"; 
+                                elseif($file_ext!=="jpeg"&&"png"&&"gif"){
+                                    echo '<p class="alert alert-danger  text-center py-3"> Extension  non prise en charge</p>';
                                     unset ($_SESSION['table']);
                                   }
                                 
                                 elseif($_FILES['file']['error']>"0") {
-                                    print "Échec du téléchargement!";
+                                    echo '<p class="alert alert-danger  text-center py-3"> Échec du téléchargement!</p>';
+                                   
+                                  
                                     switch($_FILES['file']['error']){
                                         case 1:
-                                            print "Échec du téléchargement!";
-                                            print ($_FILES['file']['error']);
-                                            echo ' Valeur : 1. La taille du fichier téléchargé excède la valeur de upload_max_filesize, configurée dans le php.ini';
+                                            echo '<p class="alert alert-danger  text-center py-3"> Échec du téléchargement!</p>';
+                                            //print ($_FILES['file']['error']);
+                                            echo '<p class="alert alert-danger  text-center py-3"> Valeur : 1. La taille du fichier téléchargé excède la valeur de upload_max_filesize, configurée dans le php.ini</p>';
                                         break;
 
                                         case 2:
-                                            print "Échec du téléchargement!";
-                                            print ($_FILES['file']['error']);
-                                            echo ' Valeur : 2. La taille du fichier téléchargé excède la valeur de MAX_FILE_SIZE, qui a été spécifiée dans le formulaire HTML';
+                                            
+                                            echo '<p class="alert alert-danger  text-center py-3"> Échec du téléchargement!</p>';
+                                            //print ($_FILES['file']['error']);
+                                            echo '<p class="alert alert-danger  text-center py-3"> Valeur : 2. La taille du fichier téléchargé excède la valeur de MAX_FILE_SIZE, qui a été spécifiée dans le formulaire HTML</p>';
                                         break;
 
                                         case 3:
-                                            print "Échec du téléchargement!";
-                                            print ($_FILES['file']['error']);
-                                            echo 'Valeur : 3. Le fichier n\'a été que partiellement téléchargé';
-                                        
+                                            echo '<p class="alert alert-danger  text-center py-3"> Échec du téléchargement!</p>';
+                                            //print ($_FILES['file']['error']);
+                                            echo '<p class="alert alert-danger  text-center py-3">Valeur : 3. Le fichier n\'a été que partiellement téléchargé</p>';
                                         break;
 
                                         case 4:
-                                            print "Échec du téléchargement!";
-                                            print ($_FILES['file']['error']);
-                                            echo ' Valeur : 4. Aucun fichier n\'a été téléchargé';
+                                            echo '<p class="alert alert-danger  text-center py-3"> Échec du téléchargement!</p>';
+                                            //print ($_FILES['file']['error']);
+                                            echo '<p class="alert alert-danger  text-center py-3"> Valeur : 4. Aucun fichier n\'a été téléchargé</p>';
                                         break;
 
                                         case 6:
-                                            print "Échec du téléchargement!";
-                                            print ($_FILES['file']['error']);
-                                            echo ' Valeur : 6. Un dossier temporaire est manquant';
+                                            echo '<p class="alert alert-danger  text-center py-3"> Échec du téléchargement!</p>';
+                                            //print ($_FILES['file']['error']);
+                                            echo '<p class="alert alert-danger  text-center py-3"> Valeur : 6. Un dossier temporaire est manquant</p>';
                                         break;
 
                                         case 7:
-                                            print "Échec du téléchargement!";
-                                            print ($_FILES['file']['error']);
-                                            echo 'Valeur : 7. Échec de l\'écriture du fichier sur le disque';
+                                            echo '<p class="alert alert-danger  text-center py-3"> Échec du téléchargement!</p>';
+                                            //print ($_FILES['file']['error']);
+                                            echo '<p class="alert alert-danger  text-center py-3"> Valeur : 7. Échec de l\'écriture du fichier sur le disque</p>';
                                         break;
 
                                         case 8:
-                                            print "Échec du téléchargement!";
-                                            print ($_FILES['file']['error']);
-                                            echo ' Valeur : 8. Une extension PHP a arrêté l\'envoi de fichier. PHP ne propose aucun moyen de déterminer quelle extension est en cause. L\'examen du phpinfo() peut aider';
+                                            echo '<p class="alert alert-danger  text-center py-3"> Échec du téléchargement!</p>';
+                                            //print ($_FILES['file']['error']);
+                                            echo '<p class="alert alert-danger  text-center py-3">  Valeur : 8. Une extension PHP a arrêté l\'envoi de fichier. PHP ne propose aucun moyen de déterminer quelle extension est en cause. L\'examen du phpinfo() peut aider</p>';
                                         break;
 
                                     }
@@ -191,7 +191,6 @@ echo '</div>
                                  } }  
                                     
                                     elseif(isset($table)){
-                                                        
                                         switch(isset($_GET)){
                                             case isset($_GET['debugging']):
                                                 //echo ' passé en debugging';
@@ -202,32 +201,23 @@ echo '</div>
                                                 print_r($table);
                                                 echo '</pre>';
                                             break;
-
                                             case isset($_GET['concatenation']):
                                                 //echo ' passé en concatenation';
-                                                        
                                                  echo '<h2 class="text-center">Concaténation</h2>';
                                                  echo'<br>';
                                                  echo "<h3 class='fs-5'>===> Construction d'une phrase avec le contenu du tableau :</h3>";
-                                
                                                  $x = ($table['civility'] == "Man") ? "Mr  " :  "Mme "; 
-                                                   
                                                  echo $a. $x . $table["first_name"] . $b. $table["last_name"] . $c . $table["age"] . $d . $table['size'] .$e;
-                               
                                                  echo "<h3 class='fs-5'>===> Construction d'une phrase après MAJ du tableau :</h3>";
                                                  $table['first_name'] = ucfirst ($table['first_name']);
                                                  $table['last_name'] = strtoupper($table['last_name']);
                                                  echo $a. $x . $table["first_name"] . $b . $table["last_name"] . $c. $table["age"] . $d . $table['size'] . $e;
-                                
                                                  echo "<h3 class='fs-5'>===> Affichage d'une virgule à la place du point pour la taille :</h3>";
-
                                                  $table['size'] = str_replace('.' , ',', $table['size']);
                                                  $table['first_name'] = ucfirst ($table['first_name']);
-                                                 $table['last_name'] = strtoupper($table['last_name']);
-                                                              
+                                                 $table['last_name'] = strtoupper($table['last_name']);        
                                                  echo $a. $x . $table["first_name"] . $b . $table["last_name"] . $c . $table["age"] . $d. $table['size'] . $e;
                                             break;
-
                                             case isset($_GET['loop']):
                                                 //echo (" passé en loop");
                                                 $k='<div>à la ligne n°';
@@ -238,14 +228,11 @@ echo '</div>
                                                 echo "<h2 class='text-center'>Boucle</h2><br>";
                                                 echo "<p>===> Lecture du tableau à l'aide d'une boucle foreach</p><br>";
                                                 $table = array_filter($table);                 
-                                                   
                                                 foreach ($table as $clef => $valeur){
                                                     if($clef=='img'){
                                                         echo $k . $i . $l . $clef . $m ;
                                                         break;
-                                                       
                                                     }
-                                                 
                                                     echo $k . $i . $l . $clef . $m . $valeur . $n;
                                                      $i=$i+1;
                                                                                 }
@@ -254,14 +241,12 @@ echo '</div>
                                                     echo "<img w-100 src='uploaded/".$table['img']['name']."'>";
                                                     echo '</figure>';
                                                 }     
-                                                
                                             break;
 
                                             case isset($_GET['function']):
                                                 //echo (" passé en function");
                                                 echo "<h2 class='text-center'>Fonction</h2><br>";
                                                 echo "<p>===> J'utilise ma fonction readTable()</p><br>";
-                                                 
                                                 function readTable(){
                                                 $k='<div>à la ligne n°';
                                                 $l=' correspond la clé "';
@@ -270,14 +255,11 @@ echo '</div>
                                                 $i = 0;
                                                 $table = $_SESSION['table'];
                                                 $table = array_filter($table);  
-
                                                 foreach ($table as $clef => $valeur){
                                                     if($clef=='img'){
                                                         echo $k . $i . $l . $clef . $m ;
                                                         break;
-                                                       
                                                     }
-                                                 
                                                     echo $k . $i . $l . $clef . $m . $valeur . $n;
                                                      $i=$i+1;
                                                                                 }
@@ -288,28 +270,21 @@ echo '</div>
                                                 }  
                                             }
                                                             readTable();
-                                              
                                             break;
-
                                             case isset($_GET['del']):
                                                 //echo (" passé en del");
                                                 session_destroy(); 
                                                 unset ($_SESSION['table']);
                                                 echo '<p class="alert-success text-center py-3"> Données supprimées !</p>';
                                             break;
-
                                             default: echo '<a role="button" class=" btn btn-primary me-3" href="index.php?add">Ajouter des données</a>';
-                                            echo '<a role="button" class="btn btn-outline-secondary w-30" href="index.php?addmore">Ajouter plus de données</a>';
-                                                                                 
+                                            echo '<a role="button" class="btn btn-outline-secondary w-30" href="index.php?addmore">Ajouter plus de données</a>';    
                                                                         }
-                                                                       
                                                                     }else{
                                                                         echo '<a role="button" class=" btn btn-primary me-3" href="index.php?add">Ajouter des données</a>';
                                                                         echo '<a role="button" class="btn btn-outline-secondary w-30" href="index.php?addmore">Ajouter plus de données</a>';
                                                                           } 
-
-
-                                                                        
+                            
   ?>
                   
 
@@ -321,3 +296,7 @@ echo '</div>
     <?php include("./includes/footer.inc.html"); ?> 
 </body>
 </html>
+
+
+
+
